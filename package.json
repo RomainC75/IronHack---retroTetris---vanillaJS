@@ -1,0 +1,19 @@
+{
+  "name": "p1-tetris",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "jest": "^28.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll --verbose=false"
+  },
+  "author": "",
+  "license": "ISC"
+}
