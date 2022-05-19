@@ -1,3 +1,7 @@
+const matrixListFrom = require('../tests/matrixFiles/isLineCompleteMatrix')
+const matrixListReturn = require('../tests/matrixFiles/eraseLinesReturn')
+
+
 class Matrix{
     constructor (){
         this.score=0
@@ -23,6 +27,7 @@ class Matrix{
             [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
             [{color:2,moving:false},{color:2,moving:false},{color:2,moving:false},{color:2,moving:false},{color:2,moving:false},{color:2,moving:false},{color:2,moving:false},{color:2,moving:false},{color:2,moving:false},{color:2,moving:false}],
         ]
+        this.newLine=[{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}]
     }
     get Matrix() {
         return this.matrix
@@ -56,6 +61,15 @@ class Matrix{
             } )
         })
     }
+    setAllMovingBlocksToFalse(){
+        this.matrix= this.matrix.map( line => line.map(unit=>{
+            return {
+                ...unit,
+                moving:false
+            }
+        }))
+        console.log(this.matrix)
+    }
     goDown(){
         //from the bottom up!
         this.matrix = this.matrix.reverse().map( (line,lineIndex,arrayM) =>{
@@ -75,8 +89,23 @@ class Matrix{
             })
         }).reverse()
     }
+    //return completed lines quantity
+    isLineComplet(){
+        return this.matrix.reduce((accu,current)=>current.every(unit=>unit.color>0) ? accu+1 : accu,0)
+    }
+    //erase completed lines and unshift new blank lines
+    eraseLines(completedLinesNumber){       
+        this.matrix=this.matrix.filter(line => !line.every(unit=>unit.color>0))
+        for(let i=0 ; i<completedLinesNumber ; i++){
+            this.matrix.unshift(this.newLine)
+        }
+    }
+
 }
 
-
+// const matrix = new Matrix()
+// console.log(matrix.Matrix)
+// matrix.eraseLines(matrix.isLineComplet())
+// console.log(matrix.Matrix)
 
 module.exports={Matrix}
