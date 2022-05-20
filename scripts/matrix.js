@@ -1,11 +1,12 @@
 // const matrixListFrom = require('../tests/matrixFiles/isLineCompleteMatrix')
 // const matrixListReturn = require('../tests/matrixFiles/eraseLinesReturn')
+const tetromino = require('./tetromino')
 
 
 class Matrix{
     constructor (){
         this.score=0
-        this.isMoving
+        this.isMoving=true
         this.matrix = [
             [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
             [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
@@ -40,13 +41,59 @@ class Matrix{
         }
     }
     addToTheQueue(){
-        this.queue.push(new RectoL)
+        this.queue.push(new tetromino.RectoL())
     }
     removeFromQueue(){
         this.queue.shift()
     }
+    tryToMoveLeft(){
+        if(this.moving && this.queue[0].x>0){
+            this.queue.x--
+        }
+    }
     goLeft(){
+        if(queue[0].width>0){
+            queue[0].x--
+        }
+    }
+    goRight(){
+        console.log('go right', this.queue)
+        if (this.queue[0].positions.length>0 && this.isMoving){
+            const actualPosition = this.queue[0].positions[this.queue[0].positionIndex]
+            console.log('actual position', actualPosition)
+            for(let i=this.queue[0].totalWidth-1 ; i>=0 ; i--){     
+                console.log(i)        
+                if(actualPosition.some(line=>{
+                    console.log(i,line)
+                    return line[i]===1
+                })){
+                    return i+1
+                }
+            }
+            return 'end'
+        } 
+    }
+    rotate(){
+        this.queue[0].rotateTetromino()
+    }
+    goDown(){
+        this.queue[0].goDownTetromino()
         
+    }
+    getResult(){
+        const actualPosition = this.queue[0].getTetrominoActualPositionArray()
+        return this.matrix.map( (line, y, arrayM)=>{
+            return line.map( (unit, x, array)=>{
+                if(x>=this.queue[0].x && y>=this.queue[0].y && x<this.queue[0].x+this.queue[0].totalWidth && y<this.queue[0].y+this.queue[0].totalWidth){
+                    //console.log('1')
+                    // console.log('-----------------------')
+                    // console.log('--->',x-this.queue[0].x , y-this.queue[0].y)
+                    // console.log( x,y,':',actualPosition[y-this.queue[0].y][x-this.queue[0].x])
+                    return actualPosition[y-this.queue[0].y][x-this.queue[0].x]==1 ? 1 : unit.color
+                }
+                return unit.color
+            })
+        })
     }
     // isLineUnderMovingBlocks(line, lineAbove){
     //     return liveAbove.some( unit=>unit.moving)
