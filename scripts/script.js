@@ -1,7 +1,6 @@
 const matrix = new Matrix
 console.log(matrix.matrix)
 
-
 const reRender = ()=>{
     matrix.matrix.flat().forEach((el,i) => {
         const div=document.querySelector(`.tetrisBoard div:nth-child(${i+1})`)
@@ -11,10 +10,6 @@ const reRender = ()=>{
         console.log(el)
     });
 }
-
-
-
-
 
 reRender()
 
