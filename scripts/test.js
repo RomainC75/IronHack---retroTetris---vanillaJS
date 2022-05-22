@@ -11,21 +11,24 @@ const printMatrix = (matrix) =>{
 const matrix = new matrixFile.Matrix()
 
 matrix.addToTheQueue()
-console.log( '----->', matrix.goRight() )
-
-matrix.rotate()
 
 console.log( '----->', matrix.goRight() )
 
+
+
+console.log('-------------------------------------',matrix.getDistanceToTheLeftOfTheFirstTetromino())
+printMatrix(matrix.getResult())
 matrix.rotate()
+
+
+console.log('-------------------------------------',matrix.getDistanceToTheLeftOfTheFirstTetromino())
+printMatrix(matrix.getResult())
 matrix.rotate()
+
+console.log('-------------------------------------',matrix.getDistanceToTheLeftOfTheFirstTetromino())
+printMatrix(matrix.getResult())
 matrix.rotate()
 
-console.log( '----->', matrix.goRight() )
-
-matrix.goDown()
-
-const matrixToPrint = matrix.getResult()
-
-printMatrix(matrixToPrint)
-
+console.log('-------------------------------------',matrix.getDistanceToTheLeftOfTheFirstTetromino())
+printMatrix(matrix.getResult())
+matrix.rotate()
