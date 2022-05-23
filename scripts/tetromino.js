@@ -47,6 +47,9 @@ class Tetromino{
         }
         return leftSpace
     }
+    distanceToTheBottom(index){
+        const actualPosition = typeof index==='number' ? this.positions[index] : this.positions[this.positionIndex]
+    }
 }
 
 //coordonnates : start upper left corner

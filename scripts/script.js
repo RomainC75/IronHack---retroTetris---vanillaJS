@@ -12,18 +12,17 @@ console.log(matrix.matrix)
 
 //event to the buttons
 document.addEventListener('keydown', (event)=>{
-    if(event.key==='ArrowUp'){
+    if(event.key==='ArrowUp' && !matrix.isNextMoveInContactWithBlocks(1) ){
         matrix.rotate()
         reRender()
-    }else if(event.key==='ArrowLeft'){
+    }else if(event.key==='ArrowLeft' && !matrix.isNextMoveInContactWithBlocks(4)){
         matrix.goLeft()
         reRender()
-    }else if(event.key==='ArrowRight'){
+    }else if(event.key==='ArrowRight' && !matrix.isNextMoveInContactWithBlocks(2)){
         matrix.goRight()
         reRender()
     }
 })
-
 
 matrix.addToTheQueue()
 
