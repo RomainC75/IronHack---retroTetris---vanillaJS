@@ -5,6 +5,20 @@ for( let i = 0  ; i<200 ; i++ ){
     tetrisBoard.appendChild(divEl)
 }
 
+const nextPiece = document.querySelector('#nextPiece')
+console.log(nextPiece)
+for( let i = 0  ; i<16 ; i++ ){
+    const divEl = document.createElement('div')
+    nextPiece.appendChild(divEl)
+}
+
+const secondNextPiece = document.querySelector('#secondNextPiece')
+console.log(nextPiece)
+for( let i = 0  ; i<16 ; i++ ){
+    const divEl = document.createElement('div')
+    secondNextPiece.appendChild(divEl)
+}
+
 //matrix creation
 const matrix = new Matrix
 console.log(matrix.matrix)
@@ -30,15 +44,37 @@ for(let i=0 ; i<2 ; i++){
     matrix.addToTheQueue()
 }
 
+const printPieceN = (index, element) => {
+    const pieceToPrint=matrix.getPieceOfIndexNInQueue(index)
+    const color = matrix.queue[index].color
+    console.log('color',color)
+    let base= [
+        [0,0,0,0],
+        [0,0,0,0],
+        [0,0,0,0],
+        [0,0,0,0],
+    ]
+    base = base.map( (line,y)=>{
+        return line.map( (unit,x) =>{
+            return y<pieceToPrint[0].length && x<pieceToPrint.length && pieceToPrint[y][x]===1 ? color : 0
+        })
+    }).flat().forEach((el,index)=>{
+        const elToChange = element.querySelector(`div:nth-child(${index+1})`)
+        elToChange.removeAttribute('class')
+        elToChange.classList.add(`${colors[el-1]}`)
+    })
+    console.log('BBAASSEE',base)
+}
 
+printPieceN(1,nextPiece)
 
 const reRender = ()=>{
     console.log('---',matrix.getResult())
     matrix.getResult().flat().forEach((el,i) => {
         const div=document.querySelector(`.tetrisBoard div:nth-child(${i+1})`)
-        div.removeAttribute('class')
-        div.classList.add('boardUnit')
-        div.classList.add(el>0 ? colors[el-1] : 'blank')
+        div.removeAttribute( 'class' )
+        div.classList.add( 'boardUnit' )
+        div.classList.add( el>0 ? colors[el-1] : 'blank' )
         //console.log(el)
     });
 }
@@ -55,18 +91,15 @@ setInterval( ()=>{
         matrix.matrix=matrix.getResult()
         matrix.addToTheQueue()
         matrix.removeFromQueue()
-        
+        printPieceN(1,nextPiece)
+        // printPieceN(2,secondNextPiece)
         //special color
-
         matrix.makeFullLinesColored()
         reRender()
         setTimeout(()=>{
             matrix.eraseFullLines()
             reRender()
-        },200)
-        
-
-        
+        },200)        
     }
 },500)
 

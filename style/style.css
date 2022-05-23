@@ -51,6 +51,9 @@ body {
 
 .bigContainer {
   margin: 40px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .tetrisBoard {
@@ -61,5 +64,23 @@ body {
   -ms-grid-rows: (5%)[20];
   -ms-grid-columns: (10%)[10];
       grid-template: repeat(20, 5%)/repeat(10, 10%);
+}
+
+.queue {
+  margin: 60px;
+}
+
+#nextPiece, #secondNextPiece {
+  display: -ms-grid;
+  display: grid;
+  width: 100px;
+  height: 100px;
+  -ms-grid-rows: (20%)[4];
+  -ms-grid-columns: (20%)[4];
+      grid-template: repeat(4, 20%)/repeat(4, 20%);
+}
+
+#nextPiece div, #secondNextPiece div {
+  border: 1px solid #8c8c8c;
 }
 /*# sourceMappingURL=style.css.map */

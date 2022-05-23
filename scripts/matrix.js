@@ -43,6 +43,9 @@ class Matrix{
             .sort((a,b)=> 0.5 - Math.random())[0])
         
     }
+    getPieceOfIndexNInQueue(index){
+        return this.queue[index].positions[0]
+    }
     removeFromQueue(){
         this.queue.shift()
     }

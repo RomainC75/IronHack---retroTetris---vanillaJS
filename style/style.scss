@@ -48,11 +48,27 @@ body{
 
 .bigContainer{
     margin:40px auto;
+    display:flex;
 }
 
 .tetrisBoard{
     width:300px;
     height:600px;
     display:grid;
-    grid-template: repeat(20,5%) / repeat(10,10%) ; 
+    grid-template: repeat(20,5%) / repeat(10,10%); 
 }
+
+.queue{
+    margin:60px;
+}
+
+#nextPiece, #secondNextPiece{
+    display:grid;
+    width:100px;
+    height:100px;
+    grid-template: repeat(4,20%) / repeat(4,20%);
+    & div{
+        border:1px solid rgb(140, 140, 140);
+    }
+}
+
