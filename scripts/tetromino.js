@@ -49,6 +49,12 @@ class Tetromino{
     }
     distanceToTheBottom(index){
         const actualPosition = typeof index==='number' ? this.positions[index] : this.positions[this.positionIndex]
+        for(let i=this.totalWidth-1 ; i>=0 ; i--){
+            if( actualPosition[i].includes(1) ){
+                return i
+            }
+        }
+        return null
     }
 }
 

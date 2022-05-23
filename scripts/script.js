@@ -42,9 +42,14 @@ reRender()
 
 
 
-// setInterval( ()=>{
-//     matrix.goDown()
+setInterval( ()=>{
 
-//     reRender()
-// },500)
+    if(!matrix.isNextMoveInContactWithBlocks(3)){
+        matrix.goDown()
+    }else{
+        matrix.matrix=matrix.getResult()
+    }
+
+    reRender()
+},500)
 
