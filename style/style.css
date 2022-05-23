@@ -1,5 +1,6 @@
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 h1 {
@@ -7,6 +8,8 @@ h1 {
 }
 
 body {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -15,7 +18,7 @@ body {
 }
 
 .blueAqua {
-  background-color: #F0F000;
+  background-color: #00f7ff;
 }
 
 .darkBlue {
@@ -27,7 +30,7 @@ body {
 }
 
 .yellow {
-  background-color: #F0A000;
+  background-color: #f0dc00;
 }
 
 .green {
@@ -42,6 +45,10 @@ body {
   background-color: #F00000;
 }
 
+.black {
+  background-color: black;
+}
+
 .bigContainer {
   margin: 40px auto;
 }
@@ -49,6 +56,10 @@ body {
 .tetrisBoard {
   width: 300px;
   height: 600px;
+  display: -ms-grid;
   display: grid;
-  grid-template: repeat(20, 5%)/repeat(10, 10%);
-}/*# sourceMappingURL=style.css.map */
+  -ms-grid-rows: (5%)[20];
+  -ms-grid-columns: (10%)[10];
+      grid-template: repeat(20, 5%)/repeat(10, 10%);
+}
+/*# sourceMappingURL=style.css.map */

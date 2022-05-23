@@ -5,5 +5,6 @@ const colors=[
     'yellow',
     'green',
     'purple',
-    'red'
+    'red',
+    'black'
 ]

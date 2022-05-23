@@ -1,4 +1,3 @@
-
 const tetrisBoard = document.querySelector('section.tetrisBoard')
 for( let i = 0  ; i<200 ; i++ ){
     console.log('i')
@@ -12,22 +11,29 @@ console.log(matrix.matrix)
 
 //event to the buttons
 document.addEventListener('keydown', (event)=>{
-    if(event.key==='ArrowUp' && !matrix.isNextMoveInContactWithBlocks(1) ){
+    if(event.key==='ArrowUp' && !matrix.isNextMoveInContactWithBlocksOrBottom(1) ){
         matrix.rotate()
         reRender()
-    }else if(event.key==='ArrowLeft' && !matrix.isNextMoveInContactWithBlocks(4)){
+    }else if(event.key==='ArrowLeft' && !matrix.isNextMoveInContactWithBlocksOrBottom(4)){
         matrix.goLeft()
         reRender()
-    }else if(event.key==='ArrowRight' && !matrix.isNextMoveInContactWithBlocks(2)){
+    }else if(event.key==='ArrowRight' && !matrix.isNextMoveInContactWithBlocksOrBottom(2)){
         matrix.goRight()
+        reRender()
+    }else if(event.key==='ArrowDown' && !matrix.isNextMoveInContactWithBlocksOrBottom(3)){
+        matrix.goDown()
         reRender()
     }
 })
 
-matrix.addToTheQueue()
+for(let i=0 ; i<2 ; i++){
+    matrix.addToTheQueue()
+}
+
+
 
 const reRender = ()=>{
-    //console.log('render', matrix.getResult())
+    console.log('---',matrix.getResult())
     matrix.getResult().flat().forEach((el,i) => {
         const div=document.querySelector(`.tetrisBoard div:nth-child(${i+1})`)
         div.removeAttribute('class')
@@ -39,17 +45,28 @@ const reRender = ()=>{
 
 reRender()
 
-
-
-
 setInterval( ()=>{
-
-    if(!matrix.isNextMoveInContactWithBlocks(3)){
+    console.log('---------------------------------------------')
+    //test if the block can go down
+    if(!matrix.isNextMoveInContactWithBlocksOrBottom(3)){
         matrix.goDown()
+        reRender()
     }else{
         matrix.matrix=matrix.getResult()
-    }
+        matrix.addToTheQueue()
+        matrix.removeFromQueue()
+        
+        //special color
 
-    reRender()
+        matrix.makeFullLinesColored()
+        reRender()
+        setTimeout(()=>{
+            matrix.eraseFullLines()
+            reRender()
+        },200)
+        
+
+        
+    }
 },500)
 
