@@ -31,7 +31,6 @@ for(let i=0 ; i<264 ; i++){
     wallsGrid.appendChild(element)
 }
 
-
 //event to the buttons
 document.addEventListener('keydown', (event)=>{
     if(event.key==='ArrowUp' && !matrix.isNextMoveInContactWithBlocksOrBottom(1) ){
@@ -69,14 +68,6 @@ const printPieceN = (index, element) => {
     })
 }
 
-// INITIALISATION
-const matrix = new Matrix
-for(let i=0 ; i<3 ; i++){
-    matrix.addToTheQueue()
-}
-printPieceN(1,nextPiece)
-printPieceN(2,secondNextPiece)
-
 const animateScore = (number) => {
     scorePs[0].classList.remove('animOneLine','animTwoLines','animThreeLines','animTetrisLines')
     if(number===1){
@@ -97,8 +88,6 @@ const setBlocksStyle = () =>{
     })
 }
 
-
-
 const render = ()=>{
     //game
     matrix.getResult().flat().forEach((el,i) => {
@@ -115,14 +104,34 @@ const render = ()=>{
     setBlocksStyle()
 }
 
-
-
-
+// INITIALISATION
+const matrix = new Matrix
+for(let i=0 ; i<3 ; i++){
+    matrix.addToTheQueue()
+}
+printPieceN(1,nextPiece)
+printPieceN(2,secondNextPiece)
 render()
 
+let previous=0
 let intervalId = setInterval( ()=>{
     console.log('---------------------------------------------')
-    //test if the block can go down
+    console.log('---------------------------------------------')
+   
+    console.log('---->>GET FINISH-----',matrix.isNextMoveInContactWithBlocksOrBottom(3),previous,matrix.queue[0].y)
+
+    
+    if(matrix.queue[0].y==-3 &&  previous===-2){
+        console.log('---> FINISHHHHHHHHHH')
+        console.log('---> FINISHHHHHHHHHH')
+        console.log('---> FINISHHHHHHHHHH')
+        console.log('---> FINISHHHHHHHHHH')
+        clearInterval(intervalId)
+    }
+
+    previous = matrix.queue[0].y
+
+     //test if the block can go down
     if(!matrix.isNextMoveInContactWithBlocksOrBottom(3)){
         matrix.goDown()
         render()
