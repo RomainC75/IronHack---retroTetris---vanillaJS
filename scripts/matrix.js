@@ -77,15 +77,10 @@ class Matrix{
         //--------------------------------------------------------
         const nextPositionDistanceToTheLeft =  this.queue[0].distanceToTheLeft((this.queue[0].positionIndex+1)%4)
         const nextPositionDistanceToTheRight =  this.queue[0].distanceToTheRight((this.queue[0].positionIndex+1)%4)
-        // if( this.queue[0].x >= -1 * nextPositionDistanceToTheLeft ){
-        //     console.log('true ')
-        console.log('x position : ',this.queue[0].x,'nextPositionDistanceToTheLeft',nextPositionDistanceToTheLeft)
-        console.log('x position : ',this.queue[0].x,'nextPositionDistanceToTheRight',nextPositionDistanceToTheRight)
         if( this.queue[0].x >= -1 * nextPositionDistanceToTheLeft && this.queue[0].x < 10 - ( nextPositionDistanceToTheRight ) && this.queue[0].y+this.queue[0].distanceToTheBottom() < 19){
-            console.log('true')
+
             return true
         }else {
-            console.log('false')
             return false
         }
     }
@@ -93,7 +88,6 @@ class Matrix{
         return this.queue[0].y+this.queue[0].distanceToTheBottom() < 19 ? true : false
     }
     goDown(){
-        console.log(this.queue[0].distanceToTheBottom())
         
         if( this.queue[0].y+this.queue[0].distanceToTheBottom() < 19 ){
             console.log('--->',this.queue[0].y+this.queue[0].distanceToTheBottom())
@@ -136,7 +130,6 @@ class Matrix{
         copyTetro.totalWidth=this.queue[0].totalWidth
         
         if(typeof direction !== 'number'){
-            console.log(' isNextMoveInContactWithBlocks is NULL ! ' )
             return null
         }
         if(direction==1){
@@ -148,7 +141,6 @@ class Matrix{
         }else if(direction==4){
             copyTetro.x--
         }
-        console.log('COMPARAISON : ',this.queue[0],copyTetro) 
         if(this.getResult(copyTetro)!==false && this.canGoDown()){
             return false
         }
@@ -168,39 +160,25 @@ class Matrix{
     }
     eraseFullLines(){
         const filtered = this.matrix.filter(line=>!line.every(unit=>unit>0))
-        console.log('FILTERED',filtered)
+        const filteredLineNumber = 20-filtered.length
+        this.setPoints(filteredLineNumber)
         for(let i=0 ; i<20-filtered.length ; i++){
             filtered.unshift(this.newLine)
         }
         this.matrix=filtered
+        return filteredLineNumber
     }
-    
-
+    setPoints(lineNumber){
+        if(lineNumber===1){
+            this.score+=100
+        }else if(lineNumber===2){
+            this.score+=300
+        }else if(lineNumber===3){
+            this.score+=500
+        }else if(lineNumber===4){
+            this.score+=800
+        }
+    }
 }
 
 // module.exports={Matrix}
-
-
-
-// this.matrix = [
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-//     [{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false},{color:0,moving:false}],
-// ]

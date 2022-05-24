@@ -14,7 +14,7 @@ body {
 }
 
 .boardUnit {
-  border: 1px solid black;
+  border: 1px solid rgba(138, 138, 138, 0.1);
 }
 
 .blueAqua {
@@ -81,6 +81,189 @@ body {
 }
 
 #nextPiece div, #secondNextPiece div {
-  border: 1px solid #8c8c8c;
+  border: 1px solid #d0d0d0;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.points {
+  font-size: 2em;
+}
+
+.points__scores__score {
+  position: relative;
+}
+
+.points__scores__score.base {
+  top: 0;
+}
+
+.points__scores__score.toBeAnimated {
+  font-weight: 800;
+  position: absolute;
+  opacity: 0;
+}
+
+.points__scores__score.toBeAnimated.animOneLine {
+  -webkit-animation: animOneLine 1s forwards;
+          animation: animOneLine 1s forwards;
+}
+
+.points__scores__score.toBeAnimated.animTwoLines {
+  -webkit-animation: animTwoLines 1s forwards;
+          animation: animTwoLines 1s forwards;
+}
+
+.points__scores__score.toBeAnimated.animThreeLines {
+  -webkit-animation: animThreeLines 1s forwards;
+          animation: animThreeLines 1s forwards;
+}
+
+.points__scores__score.toBeAnimated.animTetrisLines {
+  -webkit-animation: animTetrisLines 2s forwards;
+          animation: animTetrisLines 2s forwards;
+}
+
+.block {
+  -webkit-box-shadow: inset -5px -5px rgba(176, 176, 176, 0.5);
+          box-shadow: inset -5px -5px rgba(176, 176, 176, 0.5);
+}
+
+@-webkit-keyframes animOneLine {
+  0% {
+    color: black;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    color: #00ff11;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    color: black;
+    opacity: 0;
+  }
+}
+
+@keyframes animOneLine {
+  0% {
+    color: black;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    color: #00ff11;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    color: black;
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes animTwoLines {
+  0% {
+    color: black;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate(40px, 40px) scale(2);
+            transform: translate(40px, 40px) scale(2);
+    opacity: 0;
+    color: #0015ff;
+  }
+}
+
+@keyframes animTwoLines {
+  0% {
+    color: black;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate(40px, 40px) scale(2);
+            transform: translate(40px, 40px) scale(2);
+    opacity: 0;
+    color: #0015ff;
+  }
+}
+
+@-webkit-keyframes animThreeLines {
+  0% {
+    color: black;
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate(40px, 40px) scale(2);
+            transform: translate(40px, 40px) scale(2);
+    opacity: 0;
+    color: #ff7700;
+  }
+}
+
+@keyframes animThreeLines {
+  0% {
+    color: black;
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate(40px, 40px) scale(2);
+            transform: translate(40px, 40px) scale(2);
+    opacity: 0;
+    color: #ff7700;
+  }
+}
+
+@-webkit-keyframes animTetrisLines {
+  0% {
+    color: black;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate(40px, 40px) scale(3);
+            transform: translate(40px, 40px) scale(3);
+    opacity: 0;
+    color: red;
+  }
+}
+
+@keyframes animTetrisLines {
+  0% {
+    color: black;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate(40px, 40px) scale(3);
+            transform: translate(40px, 40px) scale(3);
+    opacity: 0;
+    color: red;
+  }
 }
 /*# sourceMappingURL=style.css.map */

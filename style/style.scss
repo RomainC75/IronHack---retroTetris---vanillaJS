@@ -11,7 +11,7 @@ body{
 }
 
 .boardUnit{
-    border:1px solid black;
+    border:1px solid rgba(138, 138, 138,0.1);
 }
 
 .blueAqua{
@@ -68,7 +68,103 @@ body{
     height:100px;
     grid-template: repeat(4,20%) / repeat(4,20%);
     & div{
-        border:1px solid rgb(140, 140, 140);
+        border:1px solid rgb(208, 208, 208);
     }
 }
 
+body{
+    display:flex;
+    flex-direction:column;
+}
+
+
+.points{
+    font-size:2em;
+    &__scores{
+        &__score{
+            position:relative;
+            &.base{
+                top:0;
+            }
+            &.toBeAnimated{
+                font-weight:800;
+                position:absolute;
+                opacity: 0;
+                &.animOneLine{
+                    animation:animOneLine 1s forwards;
+                }
+                &.animTwoLines{
+                    animation:animTwoLines 1s forwards;
+                }
+                &.animThreeLines{
+                    animation:animThreeLines 1s forwards;
+                }
+                &.animTetrisLines{
+                    animation:animTetrisLines 2s forwards;
+                }
+            } 
+        }
+    }
+}
+
+.block{
+    box-shadow: inset -5px -5px rgba(176, 176, 176,0.5);;
+}
+
+
+@keyframes animOneLine{
+    0%{
+      color:black;
+      transform:scale(1);
+       opacity:1;
+    }
+    50%{
+        transform:scale(1.5);
+        color:rgb(0, 255, 17);
+      }
+    100%{
+      transform:scale(1);
+      color:black;
+      opacity:0;
+    }
+  }
+
+
+@keyframes animTwoLines{
+    0%{
+      color:black;
+      transform:translate(0,0);
+       opacity:1;
+    }
+    100%{
+      transform:translate(40px,40px) scale(2);
+      opacity:0;
+      color:rgb(0, 21, 255);
+    }
+  }
+
+  @keyframes animThreeLines{
+    0%{
+      color:black;
+      transform:translate(0,0) scale(1);
+       opacity:1;
+    }
+    100%{
+      transform:translate(40px,40px) scale(2);
+      opacity:0;
+      color:rgb(255, 119, 0);
+    }
+  }
+
+  @keyframes animTetrisLines{
+    0%{
+      color:black;
+      transform:translate(0,0);
+       opacity:1;
+    }
+    100%{
+      transform:translate(40px,40px) scale(3);
+      opacity:0;
+      color:red;
+    }
+  }
