@@ -23,6 +23,14 @@ const printScore = (score) =>{
     }
 }
 
+//walls construction
+const wallsGrid = document.querySelector('.tetrisWalls')
+for(let i=0 ; i<264 ; i++){
+    const element = document.createElement('div')
+    element.classList.add('wallBlock')
+    wallsGrid.appendChild(element)
+}
+
 
 //event to the buttons
 document.addEventListener('keydown', (event)=>{
@@ -89,6 +97,8 @@ const setBlocksStyle = () =>{
     })
 }
 
+
+
 const render = ()=>{
     //game
     matrix.getResult().flat().forEach((el,i) => {
@@ -104,6 +114,9 @@ const render = ()=>{
     printScore(matrix.score)
     setBlocksStyle()
 }
+
+
+
 
 render()
 

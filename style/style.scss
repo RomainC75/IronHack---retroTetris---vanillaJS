@@ -1,17 +1,32 @@
 *{
     box-sizing:border-box;
+    font-family: 'Press Start 2P', cursive;
+    
 }
 
 h1{
     text-align: center;
+    mix-blend-mode: lighten;
+    color: #000;
+    background: #fff;
+    font-size:80px;
+    margin:0
+    
 }
 
 body{
     display:flex;
+    background: linear-gradient(-45deg, #fdffa2, #ffa7a7);
+    background-repeat:no-repeat;
+    background-size:150% 150%;
 }
 
 .boardUnit{
-    border:1px solid rgba(138, 138, 138,0.1);
+    border:1px solid rgba(83, 83, 83, 0.6);   
+}
+
+.boardUnit:not(.blank){
+    border-radius: 10%;
 }
 
 .blueAqua{
@@ -47,7 +62,7 @@ body{
 }
 
 .bigContainer{
-    margin:40px auto;
+    margin:0 auto;
     display:flex;
 }
 
@@ -56,10 +71,19 @@ body{
     height:600px;
     display:grid;
     grid-template: repeat(20,5%) / repeat(10,10%); 
+    background: url("https://images.unsplash.com/photo-1465101162946-4377e57745c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1957&q=80") center;
+    //background:rgb(189, 189, 189);
 }
 
 .queue{
     margin:60px;
+    width:224px;
+    &>div:first-child{
+        margin-bottom:20px;
+    }
+    &>div:not(:first-child){
+        margin-top:40px;
+    }
 }
 
 #nextPiece, #secondNextPiece{
@@ -68,7 +92,12 @@ body{
     height:100px;
     grid-template: repeat(4,20%) / repeat(4,20%);
     & div{
-        border:1px solid rgb(208, 208, 208);
+        border:1px solid rgb(226, 226, 226);
+    }
+    & div:not(.undefined){
+        border:1px solid rgba(78, 78, 78,0.4);
+        border-radius:10%;
+        box-shadow: inset -4px -4px rgba(83, 83, 83, 0.4);
     }
 }
 
@@ -77,12 +106,13 @@ body{
     flex-direction:column;
 }
 
-
 .points{
     font-size:2em;
+    margin:60px;
     &__scores{
         &__score{
             position:relative;
+            text-align:center;
             &.base{
                 top:0;
             }
@@ -108,9 +138,47 @@ body{
 }
 
 .block{
-    box-shadow: inset -5px -5px rgba(176, 176, 176,0.5);;
+    box-shadow: inset -5px -5px rgba(3, 3, 3, 0.22) !important;
 }
 
+.background {
+    //background: url("https://images.unsplash.com/photo-1465101162946-4377e57745c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1957&q=80") center;
+    //background-size: cover;
+        background: linear-gradient(-45deg, #fbff00, #ff0000, #0008ff, #00ff1a);
+        background-size: 600% 600%;
+        animation: gradient 10s ease infinite;
+        //height: 100vh;
+        padding:60px;
+        border-radius:2em;
+        margin:30px auto;
+}
+
+.boards{
+    position:relative;
+    width:360px;
+    height:660px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.tetrisWalls{
+    position:absolute;
+    top:3px;
+    left:1px;
+    display:grid;
+    grid-template: repeat(22,4.5%) / repeat(12,8.3%); 
+    width:360px;
+    height:660px;
+    z-index:-1;
+    transform:scale(1.01);
+    & div{
+        background:grey;
+        border:1px solid black;
+        border-radius:10%;box-shadow: inset -5px -5px rgba(3, 3, 3, 0.22) !important;
+
+    }
+}
 
 @keyframes animOneLine{
     0%{
@@ -127,8 +195,7 @@ body{
       color:black;
       opacity:0;
     }
-  }
-
+}
 
 @keyframes animTwoLines{
     0%{
@@ -141,9 +208,9 @@ body{
       opacity:0;
       color:rgb(0, 21, 255);
     }
-  }
+}
 
-  @keyframes animThreeLines{
+@keyframes animThreeLines{
     0%{
       color:black;
       transform:translate(0,0) scale(1);
@@ -154,9 +221,9 @@ body{
       opacity:0;
       color:rgb(255, 119, 0);
     }
-  }
+}
 
-  @keyframes animTetrisLines{
+@keyframes animTetrisLines{
     0%{
       color:black;
       transform:translate(0,0);
@@ -167,4 +234,16 @@ body{
       opacity:0;
       color:red;
     }
-  }
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

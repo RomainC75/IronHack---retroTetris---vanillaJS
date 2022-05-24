@@ -1,20 +1,33 @@
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: 'Press Start 2P', cursive;
 }
 
 h1 {
   text-align: center;
+  mix-blend-mode: lighten;
+  color: #000;
+  background: #fff;
+  font-size: 80px;
+  margin: 0;
 }
 
 body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  background: linear-gradient(-45deg, #fdffa2, #ffa7a7);
+  background-repeat: no-repeat;
+  background-size: 150% 150%;
 }
 
 .boardUnit {
-  border: 1px solid rgba(138, 138, 138, 0.1);
+  border: 1px solid rgba(83, 83, 83, 0.6);
+}
+
+.boardUnit:not(.blank) {
+  border-radius: 10%;
 }
 
 .blueAqua {
@@ -50,7 +63,7 @@ body {
 }
 
 .bigContainer {
-  margin: 40px auto;
+  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -64,10 +77,20 @@ body {
   -ms-grid-rows: (5%)[20];
   -ms-grid-columns: (10%)[10];
       grid-template: repeat(20, 5%)/repeat(10, 10%);
+  background: url("https://images.unsplash.com/photo-1465101162946-4377e57745c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1957&q=80") center;
 }
 
 .queue {
   margin: 60px;
+  width: 224px;
+}
+
+.queue > div:first-child {
+  margin-bottom: 20px;
+}
+
+.queue > div:not(:first-child) {
+  margin-top: 40px;
 }
 
 #nextPiece, #secondNextPiece {
@@ -81,7 +104,14 @@ body {
 }
 
 #nextPiece div, #secondNextPiece div {
-  border: 1px solid #d0d0d0;
+  border: 1px solid #e2e2e2;
+}
+
+#nextPiece div:not(.undefined), #secondNextPiece div:not(.undefined) {
+  border: 1px solid rgba(78, 78, 78, 0.4);
+  border-radius: 10%;
+  -webkit-box-shadow: inset -4px -4px rgba(83, 83, 83, 0.4);
+          box-shadow: inset -4px -4px rgba(83, 83, 83, 0.4);
 }
 
 body {
@@ -96,10 +126,12 @@ body {
 
 .points {
   font-size: 2em;
+  margin: 60px;
 }
 
 .points__scores__score {
   position: relative;
+  text-align: center;
 }
 
 .points__scores__score.base {
@@ -133,8 +165,57 @@ body {
 }
 
 .block {
-  -webkit-box-shadow: inset -5px -5px rgba(176, 176, 176, 0.5);
-          box-shadow: inset -5px -5px rgba(176, 176, 176, 0.5);
+  -webkit-box-shadow: inset -5px -5px rgba(3, 3, 3, 0.22) !important;
+          box-shadow: inset -5px -5px rgba(3, 3, 3, 0.22) !important;
+}
+
+.background {
+  background: linear-gradient(-45deg, #fbff00, #ff0000, #0008ff, #00ff1a);
+  background-size: 600% 600%;
+  -webkit-animation: gradient 10s ease infinite;
+          animation: gradient 10s ease infinite;
+  padding: 60px;
+  border-radius: 2em;
+  margin: 30px auto;
+}
+
+.boards {
+  position: relative;
+  width: 360px;
+  height: 660px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tetrisWalls {
+  position: absolute;
+  top: 3px;
+  left: 1px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (4.5%)[22];
+  -ms-grid-columns: (8.3%)[12];
+      grid-template: repeat(22, 4.5%)/repeat(12, 8.3%);
+  width: 360px;
+  height: 660px;
+  z-index: -1;
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+}
+
+.tetrisWalls div {
+  background: grey;
+  border: 1px solid black;
+  border-radius: 10%;
+  -webkit-box-shadow: inset -5px -5px rgba(3, 3, 3, 0.22) !important;
+          box-shadow: inset -5px -5px rgba(3, 3, 3, 0.22) !important;
 }
 
 @-webkit-keyframes animOneLine {
@@ -264,6 +345,30 @@ body {
             transform: translate(40px, 40px) scale(3);
     opacity: 0;
     color: red;
+  }
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 /*# sourceMappingURL=style.css.map */

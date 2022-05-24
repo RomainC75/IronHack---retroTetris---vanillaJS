@@ -5,23 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./style/style.css" rel="stylesheet">
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
     <title>Tetris</title>
+
 </head>
 <body>
-    <h1>TETRIS</h1>
+    <div class="background">
+        <h1>TETRIS</h1>
+    </div>
     <div class="bigContainer">
         
         <div class="points">
-            <p>Points : </p>
+            <p>Points:</p>
             <div class="points__scores">
                 <span class="points__scores__score toBeAnimated">0</span>
                 <span class="points__scores__score base">0</span>
             </div>
         </div>
-        <section class="tetrisBoard">
-        </section>
+
+        <div class="boards">
+            <section class="tetrisBoard"></section>
+            <section class="tetrisWalls"></section>
+        </div>
+        
+        
         <div class="queue">
+            <div>Next</div>
             <div id="nextPiece"></div>
             <div id="secondNextPiece"></div>
         </div>
