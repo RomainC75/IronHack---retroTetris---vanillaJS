@@ -104,27 +104,17 @@ const enterNewScoreInLocalStorage = (name, score) =>{
 
 const displayFinalScore = () =>{
     const scores = JSON.parse(localStorage.getItem('leaderBoard'))
-    console.log('before')
-    console.log('--->',matrix.score , scores[scores.length-1].score)
     if( matrix.score > scores[scores.length-1].score ){
-        
-        console.log('entered')
-        
         //to display the leaderBoard
         const wholeLeaderBoard = document.querySelector('.finalScore')
         wholeLeaderBoard.style.display="flex";
-        
         //to add the new Line
         const ulLeaderBoard = document.querySelector('.scoreBoard')
-        
-
         const playerScore = {
             name: 'temp',
             score: matrix.score
         }
         const newLeaderBoard = scores.filter((line,i)=>i<9)
-        console.log('length : ',newLeaderBoard.length)
-        console.log('--newLeaderBorad',newLeaderBoard)
         newLeaderBoard.push(playerScore)
         newLeaderBoard.sort((a,b)=> b.score-a.score ).forEach(player=>{
             const playerLi = document.createElement('li')
@@ -142,7 +132,6 @@ const displayFinalScore = () =>{
             render()
         })
     }
-    console.log('out')
 }
 
 const render = ()=>{
@@ -153,7 +142,7 @@ const render = ()=>{
         div.classList.add( 'boardUnit' )
         
         div.classList.add( el>0 ? colors[el-1] : 'blank' )
-        if(el===7){
+        if(el===8){
             div.classList.add('clignotant')
         }
     });
@@ -169,6 +158,7 @@ const clock = (timer) =>{
     return setInterval( ()=>{
         console.log('---------------------------------------------')
         console.log('---------------------------------------------')
+        console.log('BEGINING', matrix.matrix)
         //if(true){
         if(matrix.queue[0].y==-3 &&  previous===-2){    
             console.log('---> FINISHHHHHHHHHH')
@@ -179,27 +169,30 @@ const clock = (timer) =>{
             displayFinalScore()
         }
         previous = matrix.queue[0].y
-    
          //test if the block can go down
         if(!matrix.isNextMoveInContactWithBlocksOrBottom(3)){
             matrix.goDown()
             render()
         }else{
+            //if the block is blocked
             matrix.matrix=matrix.getResult()
             matrix.addToTheQueue()
             matrix.removeFromQueue()
-            
             //special color
+            console.log('--->before colorization',matrix.matrix)
             const madeFullLinesColored = matrix.makeFullLinesColored()
+            console.log('madeFullLinesColored',madeFullLinesColored)
+            console.log('-->after colorization : ', matrix.matrix)
             render()
             if(madeFullLinesColored){
                 clearInterval(intervalId)
                 setTimeout(()=>{
-                    render()
+                    //render()
                     const erasedLinesNumber = matrix.eraseFullLines()
+                    console.log('-------> erased lines number: ',erasedLinesNumber)
                     animateScore(erasedLinesNumber)
                     render()
-                },500)
+                },400)
                 intervalId=clock(500)
             }
         }       

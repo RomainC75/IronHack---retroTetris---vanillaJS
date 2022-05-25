@@ -59,7 +59,8 @@ body {
 }
 
 .black {
-  background-color: black;
+  background-color: #f70303;
+  opacity: 0.5;
 }
 
 .bigContainer {

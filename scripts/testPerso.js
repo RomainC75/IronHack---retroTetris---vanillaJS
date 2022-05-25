@@ -12,7 +12,6 @@ matrix.addToTheQueue()
 
 console.log( '----->', matrix.goRight() )
 
-
 module.exports = {
     printMatrix
 }

@@ -157,7 +157,7 @@ class Matrix{
         this.matrix = this.matrix.map(line=>{
             if(line.every(unit=>unit>0)){
                 madeFullLinesColored = true
-                return [7,7,7,7,7,7,7,7,7,7]
+                return [8,8,8,8,8,8,8,8,8,8]
             }else{
                 return line
             }
@@ -166,15 +166,21 @@ class Matrix{
     }
     eraseFullLines(){
         const filtered = this.matrix.filter(line=>!line.every(unit=>unit>0))
+        console.log('(inside eraseFullLines)lines to erase : ', 20-filtered.length)
         const filteredLineNumber = 20-filtered.length
-        this.setPoints(filteredLineNumber)
-        for(let i=0 ; i<20-filtered.length ; i++){
+        this.increasePoints(filteredLineNumber)
+        console.log('filtered : ',filtered)
+        console.log('filteredLineNumber:',filteredLineNumber)
+        for(let i=0 ; i<filteredLineNumber ; i++){
+            console.log('i : ',i)
             filtered.unshift(this.newLine)
         }
+        console.log('after adding new empty lines : ', filtered)
         this.matrix=filtered
+        console.log('new matrix with new lines : ', this.matrix)
         return filteredLineNumber
     }
-    setPoints(lineNumber){
+    increasePoints(lineNumber){
         if(lineNumber===1){
             this.score+=100
         }else if(lineNumber===2){

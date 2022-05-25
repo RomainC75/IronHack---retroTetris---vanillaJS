@@ -144,7 +144,7 @@ class ZCurve extends Tetromino{
             [[0,0,0],[1,1,0],[0,1,1]],
             [[0,1,0],[1,1,0],[1,0,0]],
         ]
-        this.color=6
+        this.color=7
         this.totalWidth=3
     }
 }
@@ -158,7 +158,7 @@ class TBlock extends Tetromino{
             [[0,0,0],[1,1,1],[0,1,0]],
             [[0,1,0],[1,1,0],[0,1,0]],
         ]
-        this.color=5
+        this.color=6
         this.totalWidth=3
     }
 }

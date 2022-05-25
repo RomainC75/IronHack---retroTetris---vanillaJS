@@ -1,15 +1,20 @@
 sounds
 
-menu
+x menu
 
-restart
+x restart
 
-leader Board in sessionsStorage
+x leader Board in sessionsStorage
 script 142
 matrix 5
 
+levels 
+
 bugs : 
-  points animations 
-  line to erase
+  x points animations 
+  x line to erase
+  tetro colors
+  slide on the floor
+
 
 
