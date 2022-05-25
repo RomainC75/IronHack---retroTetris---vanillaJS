@@ -5,16 +5,16 @@ x menu
 x restart
 
 x leader Board in sessionsStorage
-script 142
-matrix 5
+      script 142
+      matrix 5
 
-levels 
+-->levels 
 
 bugs : 
   x points animations 
   x line to erase
-  tetro colors
-  slide on the floor
+  xtetro colors
+  -->slide on the floor
 
 
 

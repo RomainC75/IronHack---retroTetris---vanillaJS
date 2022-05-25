@@ -3,6 +3,7 @@
 class Matrix{
     constructor (){
         this.score=0
+        this.level=0
         this.isMoving=true
         this.matrix = [
             [0,0,0,0,0,0,0,0,0,0],
@@ -28,6 +29,9 @@ class Matrix{
         ]
         this.newLine=[0,0,0,0,0,0,0,0,0,0]   
         this.queue=[]
+        this.linesErasedNumber=0
+        this.timing=[600,500,450,400,370,340,310,290,280,250,230]
+        this.levelsAndLines = [0,2,4,6,8,10,12,14,16,18,20]
     }
     get Matrix() {
         return this.matrix
@@ -36,6 +40,16 @@ class Matrix{
         if(matrixToSet.length===20 && matrixToSet.every(line=>line.length===10) && matrixToSet.flat().every(unit=>typeof unit==='object')){
             this.matrix=matrixToSet
         }
+    }
+    increaseLevelIfPossible(){
+        const correspondingLevel = this.levelsAndLines.findIndex(val=>this.linesErasedNumber < val)
+        console.log(this.levelsAndLines, this.linesErasedNumber)
+        console.log("correspondingLevel",correspondingLevel)
+        this.level = correspondingLevel==-1 ? 10 : correspondingLevel-1
+    }
+    getTimingRelatedToThisLevel(){
+        console.log('-->',this.level)
+        return this.timing[this.level]
     }
     addToTheQueue(){
         const elements = [new RectoL(), new VersoL(), new Square(), new Barre(), new SCurve(), new ZCurve(), new TBlock()]
@@ -62,7 +76,7 @@ class Matrix{
     }
     goRight(){
         //to the right border
-        console.log('---->Distance to the right',this.queue[0].distanceToTheRight())
+        //console.log('---->Distance to the right',this.queue[0].distanceToTheRight())
         if ( this.queue[0].x < 10 - ( this.queue[0].distanceToTheRight() +1 ) ){
             this.queue[0].x++
         }
@@ -71,7 +85,7 @@ class Matrix{
         if(this.isRotationPossibleAgainstTheSideWalls()){
             this.queue[0].rotateTetromino()
         }
-        console.log('to the bottom',this.queue[0].distanceToTheBottom())
+        //console.log('to the bottom',this.queue[0].distanceToTheBottom())
     }
     isRotationPossibleAgainstTheSideWalls(){
         //--------------------------------------------------------
@@ -98,7 +112,7 @@ class Matrix{
     // normal
     // test if there is collision between tetromino and the base !
     getResult(copyTetro){
-        console.log('next tetro inside funtion : ',copyTetro)
+        //console.log('next tetro inside funtion : ',copyTetro)
         const tetro = copyTetro ? copyTetro : this.queue[0]
         //console.log(tetro.positionIndex,tetro.positions)
         let isProblem = false
@@ -118,7 +132,6 @@ class Matrix{
         })
         return isProblem ? false : result
     }
-
     isNextMoveInContactWithBlocksOrBottom(direction){
         //1 : rotate  - 2 : right - 3 : down - 4 : left
         const copyTetro = new Tetromino()
@@ -128,7 +141,6 @@ class Matrix{
         copyTetro.positions=this.queue[0].positions
         copyTetro.color=this.queue[0].color
         copyTetro.totalWidth=this.queue[0].totalWidth
-        
         if(typeof direction !== 'number'){
             return null
         }
@@ -141,6 +153,7 @@ class Matrix{
         }else if(direction==4){
             copyTetro.x--
         }
+        //////////////////////////////////////////////////////////
         if(this.getResult(copyTetro)!==false && this.canGoDown()){
             return false
         }
@@ -166,18 +179,20 @@ class Matrix{
     }
     eraseFullLines(){
         const filtered = this.matrix.filter(line=>!line.every(unit=>unit>0))
-        console.log('(inside eraseFullLines)lines to erase : ', 20-filtered.length)
+        //console.log('(inside eraseFullLines)lines to erase : ', 20-filtered.length)
         const filteredLineNumber = 20-filtered.length
         this.increasePoints(filteredLineNumber)
+        this.linesErasedNumber+=filteredLineNumber
+        console.log('total erased lines : ', this.linesErasedNumber)
         console.log('filtered : ',filtered)
         console.log('filteredLineNumber:',filteredLineNumber)
         for(let i=0 ; i<filteredLineNumber ; i++){
             console.log('i : ',i)
             filtered.unshift(this.newLine)
         }
-        console.log('after adding new empty lines : ', filtered)
+        // console.log('after adding new empty lines : ', filtered)
         this.matrix=filtered
-        console.log('new matrix with new lines : ', this.matrix)
+        //console.log('new matrix with new lines : ', this.matrix)
         return filteredLineNumber
     }
     increasePoints(lineNumber){

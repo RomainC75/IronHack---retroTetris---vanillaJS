@@ -90,11 +90,6 @@ const setBlocksStyle = () =>{
     })
 }
 
-
-const displayMenu = () =>{
-
-}
-
 const enterNewScoreInLocalStorage = (name, score) =>{
     const newLeaderBoard = JSON.parse(localStorage.getItem('leaderBoard')).filter((line,i)=>i<9)
     const newLine = {name,score}
@@ -118,7 +113,6 @@ const displayFinalScore = () =>{
         newLeaderBoard.push(playerScore)
         newLeaderBoard.sort((a,b)=> b.score-a.score ).forEach(player=>{
             const playerLi = document.createElement('li')
-
             playerLi.innerHTML= player.name==='temp' ? `<input id="newScore"> <div>${player.score}</div>` : `<div>${player.name}</div><div>${player.score}</div>`
             ulLeaderBoard.appendChild(playerLi)
         })
@@ -128,7 +122,7 @@ const displayFinalScore = () =>{
             wholeLeaderBoard.style.display="none";
             //reset
             menu()
-            matrix=new matrix()
+            matrix=new Matrix()
             render()
         })
     }else{
@@ -153,6 +147,7 @@ const render = ()=>{
             div.classList.add('clignotant')
         }
     });
+    document.querySelector('.levelP').textContent=matrix.level
     //next pieces
     printPieceN(1,nextPiece)
     printPieceN(2,secondNextPiece)
@@ -163,9 +158,9 @@ const render = ()=>{
 
 const clock = (timer) =>{
     return setInterval( ()=>{
-        console.log('---------------------------------------------')
-        console.log('---------------------------------------------')
-        console.log('BEGINING', matrix.matrix)
+        //console.log('---------------------------------------------')
+        //console.log('---------------------------------------------')
+        //console.log('BEGINING', matrix.matrix)
         //if(true){
         if(matrix.queue[0].y==-3 &&  previous===-2){    
             console.log('---> FINISHHHHHHHHHH')
@@ -177,6 +172,7 @@ const clock = (timer) =>{
         }
         previous = matrix.queue[0].y
          //test if the block can go down
+        
         if(!matrix.isNextMoveInContactWithBlocksOrBottom(3)){
             matrix.goDown()
             render()
@@ -186,21 +182,29 @@ const clock = (timer) =>{
             matrix.addToTheQueue()
             matrix.removeFromQueue()
             //special color
-            console.log('--->before colorization',matrix.matrix)
+            //console.log('--->before colorization',matrix.matrix)
             const madeFullLinesColored = matrix.makeFullLinesColored()
-            console.log('madeFullLinesColored',madeFullLinesColored)
-            console.log('-->after colorization : ', matrix.matrix)
+            //console.log('madeFullLinesColored',madeFullLinesColored)
+            //console.log('-->after colorization : ', matrix.matrix)
             render()
             if(madeFullLinesColored){
                 clearInterval(intervalId)
                 setTimeout(()=>{
                     //render()
                     const erasedLinesNumber = matrix.eraseFullLines()
-                    console.log('-------> erased lines number: ',erasedLinesNumber)
+                    //console.log('-------> erased lines number: ',erasedLinesNumber)
                     animateScore(erasedLinesNumber)
                     render()
                 },400)
-                intervalId=clock(500)
+                
+                matrix.increaseLevelIfPossible()
+                
+                console.log('corresponding timing : ' , matrix.getTimingRelatedToThisLevel())
+                console.log('++++++++++linesErasedNumber',matrix.linesErasedNumber)
+                timing = timing
+                console.log('new timing : ',timing)
+                
+                intervalId=clock(matrix.getTimingRelatedToThisLevel())
             }
         }       
     },timer)
@@ -251,6 +255,8 @@ let timing = false
 
 const launch = () =>{
     matrix = new Matrix()
+    timing = matrix.getTimingRelatedToThisLevel()
+    let previous=0
     for(let i=0 ; i<3 ; i++){
         matrix.addToTheQueue()
     }
@@ -258,8 +264,8 @@ const launch = () =>{
     printPieceN(2,secondNextPiece)
     render()
 
-    let previous=0
-    let timing = 500
+    
+    
     intervalId = clock(timing)
 }
 
