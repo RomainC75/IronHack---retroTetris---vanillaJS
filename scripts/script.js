@@ -131,6 +131,13 @@ const displayFinalScore = () =>{
             matrix=new matrix()
             render()
         })
+    }else{
+        const looserMenu = document.querySelector('.looserMenu')
+        looserMenu.style.display='flex'
+        document.querySelector('#restart').addEventListener('click',()=>{
+            looserMenu.style.display='none'
+            launch()
+        })
     }
 }
 
