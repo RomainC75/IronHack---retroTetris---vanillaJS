@@ -67,6 +67,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
 }
 
 .tetrisBoard {
@@ -216,6 +217,83 @@ body {
   border-radius: 10%;
   -webkit-box-shadow: inset -5px -5px rgba(3, 3, 3, 0.22) !important;
           box-shadow: inset -5px -5px rgba(3, 3, 3, 0.22) !important;
+}
+
+.clignotant {
+  -webkit-animation: clignoAnim 0.4s infinite !important;
+          animation: clignoAnim 0.4s infinite !important;
+}
+
+.menu {
+  position: absolute;
+  top: 40px;
+  left: 330px;
+  background: #9e9d9d;
+  width: 400px;
+  z-index: 5;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid white;
+}
+
+.menu h2 {
+  margin-bottom: 50px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.menu button {
+  margin: 30px auto;
+  padding: 10px 15px;
+}
+
+.finalScore ul {
+  padding: 0;
+  margin: 10px;
+}
+
+.finalScore li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.finalScore li > div {
+  display: inline-block;
+}
+
+@-webkit-keyframes clignoAnim {
+  0% {
+    -webkit-transform: scale(1) rotate(0);
+            transform: scale(1) rotate(0);
+  }
+  100% {
+    -webkit-transform: scale(1.4) rotate(180deg);
+            transform: scale(1.4) rotate(180deg);
+  }
+}
+
+@keyframes clignoAnim {
+  0% {
+    -webkit-transform: scale(1) rotate(0);
+            transform: scale(1) rotate(0);
+  }
+  100% {
+    -webkit-transform: scale(1.4) rotate(180deg);
+            transform: scale(1.4) rotate(180deg);
+  }
 }
 
 @-webkit-keyframes animOneLine {

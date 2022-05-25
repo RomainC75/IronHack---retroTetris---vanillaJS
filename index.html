@@ -16,8 +16,20 @@
     <div class="background">
         <h1>TETRIS</h1>
     </div>
+
     <div class="bigContainer">
-        
+        <div class="finalScore menu">
+            <h2>Leader Board !</h2>
+            <ul class="scoreBoard">
+            </ul>
+            <button id="enterNewScore">Enter</button>
+        </div>
+        <div class="mainMenu menu">
+            <h2>Menu</h2>
+            <p>Click the start button to enter this fancy game !</p>
+            <p>(* ^ ω ^)</p>
+            <button id="startGame">START !</button>
+        </div>
         <div class="points">
             <p>Points:</p>
             <div class="points__scores">
@@ -31,13 +43,13 @@
             <section class="tetrisWalls"></section>
         </div>
         
-        
         <div class="queue">
             <div>Next</div>
             <div id="nextPiece"></div>
             <div id="secondNextPiece"></div>
         </div>
         
+        <script src="./scripts/scores.js" ></script>
         <script src="./scripts/tetromino.js" ></script>
         <script src="./scripts/colors.js" ></script>
         <script src="./scripts/matrix.js" ></script>

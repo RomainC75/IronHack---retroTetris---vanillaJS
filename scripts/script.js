@@ -23,6 +23,8 @@ const printScore = (score) =>{
     }
 }
 
+
+
 //walls construction
 const wallsGrid = document.querySelector('.tetrisWalls')
 for(let i=0 ; i<264 ; i++){
@@ -88,13 +90,72 @@ const setBlocksStyle = () =>{
     })
 }
 
+
+const displayMenu = () =>{
+
+}
+
+const enterNewScoreInLocalStorage = (name, score) =>{
+    const newLeaderBoard = JSON.parse(localStorage.getItem('leaderBoard')).filter((line,i)=>i<9)
+    const newLine = {name,score}
+    newLeaderBoard.push(newLine)
+    localStorage.setItem('leaderBoard',JSON.stringify(newLeaderBoard.sort((a,b)=>b.score-a.score)))
+}
+
+const displayFinalScore = () =>{
+    const scores = JSON.parse(localStorage.getItem('leaderBoard'))
+    console.log('before')
+    console.log('--->',matrix.score , scores[scores.length-1].score)
+    if( matrix.score > scores[scores.length-1].score ){
+        
+        console.log('entered')
+        
+        //to display the leaderBoard
+        const wholeLeaderBoard = document.querySelector('.finalScore')
+        wholeLeaderBoard.style.display="flex";
+        
+        //to add the new Line
+        const ulLeaderBoard = document.querySelector('.scoreBoard')
+        
+
+        const playerScore = {
+            name: 'temp',
+            score: matrix.score
+        }
+        const newLeaderBoard = scores.filter((line,i)=>i<9)
+        console.log('length : ',newLeaderBoard.length)
+        console.log('--newLeaderBorad',newLeaderBoard)
+        newLeaderBoard.push(playerScore)
+        newLeaderBoard.sort((a,b)=> b.score-a.score ).forEach(player=>{
+            const playerLi = document.createElement('li')
+
+            playerLi.innerHTML= player.name==='temp' ? `<input id="newScore"> <div>${player.score}</div>` : `<div>${player.name}</div><div>${player.score}</div>`
+            ulLeaderBoard.appendChild(playerLi)
+        })
+        document.querySelector('#enterNewScore').addEventListener('click',()=>{
+            const inputVal = document.querySelector('#newScore').value
+            enterNewScoreInLocalStorage(inputVal, matrix.score)
+            wholeLeaderBoard.style.display="none";
+            //reset
+            menu()
+            matrix=new matrix()
+            render()
+        })
+    }
+    console.log('out')
+}
+
 const render = ()=>{
     //game
     matrix.getResult().flat().forEach((el,i) => {
         const div=document.querySelector(`.tetrisBoard div:nth-child(${i+1})`)
         div.removeAttribute( 'class' )
         div.classList.add( 'boardUnit' )
+        
         div.classList.add( el>0 ? colors[el-1] : 'blank' )
+        if(el===7){
+            div.classList.add('clignotant')
+        }
     });
     //next pieces
     printPieceN(1,nextPiece)
@@ -104,50 +165,111 @@ const render = ()=>{
     setBlocksStyle()
 }
 
-// INITIALISATION
-const matrix = new Matrix
-for(let i=0 ; i<3 ; i++){
-    matrix.addToTheQueue()
-}
-printPieceN(1,nextPiece)
-printPieceN(2,secondNextPiece)
-render()
-
-let previous=0
-let intervalId = setInterval( ()=>{
-    console.log('---------------------------------------------')
-    console.log('---------------------------------------------')
-   
-    console.log('---->>GET FINISH-----',matrix.isNextMoveInContactWithBlocksOrBottom(3),previous,matrix.queue[0].y)
-
+const clock = (timer) =>{
+    return setInterval( ()=>{
+        console.log('---------------------------------------------')
+        console.log('---------------------------------------------')
+        //if(true){
+        if(matrix.queue[0].y==-3 &&  previous===-2){    
+            console.log('---> FINISHHHHHHHHHH')
+            console.log('---> FINISHHHHHHHHHH')
+            console.log('---> FINISHHHHHHHHHH')
+            console.log('---> FINISHHHHHHHHHH')
+            clearInterval(intervalId)
+            displayFinalScore()
+        }
+        previous = matrix.queue[0].y
     
-    if(matrix.queue[0].y==-3 &&  previous===-2){
-        console.log('---> FINISHHHHHHHHHH')
-        console.log('---> FINISHHHHHHHHHH')
-        console.log('---> FINISHHHHHHHHHH')
-        console.log('---> FINISHHHHHHHHHH')
-        clearInterval(intervalId)
-    }
-
-    previous = matrix.queue[0].y
-
-     //test if the block can go down
-    if(!matrix.isNextMoveInContactWithBlocksOrBottom(3)){
-        matrix.goDown()
-        render()
-    }else{
-        matrix.matrix=matrix.getResult()
-        matrix.addToTheQueue()
-        matrix.removeFromQueue()
-        
-        //special color
-        matrix.makeFullLinesColored()
-        render()
-        setTimeout(()=>{
-            const erasedLinesNumber = matrix.eraseFullLines()
-            animateScore(erasedLinesNumber)
+         //test if the block can go down
+        if(!matrix.isNextMoveInContactWithBlocksOrBottom(3)){
+            matrix.goDown()
             render()
-        },200)        
-    }
+        }else{
+            matrix.matrix=matrix.getResult()
+            matrix.addToTheQueue()
+            matrix.removeFromQueue()
+            
+            //special color
+            const madeFullLinesColored = matrix.makeFullLinesColored()
+            render()
+            if(madeFullLinesColored){
+                clearInterval(intervalId)
+                setTimeout(()=>{
+                    render()
+                    const erasedLinesNumber = matrix.eraseFullLines()
+                    animateScore(erasedLinesNumber)
+                    render()
+                },500)
+                intervalId=clock(500)
+            }
+        }       
+    },timer)
+}
+
+// const clock = (timer) =>{
+//     return setInterval( ()=>{
+//         console.log('---------------------------------------------')
+//         console.log('---------------------------------------------')
+       
+//         if(matrix.queue[0].y==-3 &&  previous===-2){
+//             console.log('---> FINISHHHHHHHHHH')
+//             console.log('---> FINISHHHHHHHHHH')
+//             console.log('---> FINISHHHHHHHHHH')
+//             console.log('---> FINISHHHHHHHHHH')
+//             clearInterval(intervalId)
+//         }
+//         previous = matrix.queue[0].y
     
-},500)
+//          //test if the block can go down
+//         if(!matrix.isNextMoveInContactWithBlocksOrBottom(3)){
+//             matrix.goDown()
+//             render()
+//         }else{
+//             matrix.matrix=matrix.getResult()
+//             matrix.addToTheQueue()
+//             matrix.removeFromQueue()
+            
+//             //special color
+//             matrix.makeFullLinesColored()
+//             render()
+//             setTimeout(()=>{
+//                 const erasedLinesNumber = matrix.eraseFullLines()
+//                 animateScore(erasedLinesNumber)
+//                 render()
+//             },200)        
+//         }       
+//     },timer)
+// }
+
+// INITIALISATION
+
+
+let matrix = null
+let intervalId = null
+let previous = false
+let timing = false
+
+const launch = () =>{
+    matrix = new Matrix()
+    for(let i=0 ; i<3 ; i++){
+        matrix.addToTheQueue()
+    }
+    printPieceN(1,nextPiece)
+    printPieceN(2,secondNextPiece)
+    render()
+
+    let previous=0
+    let timing = 500
+    intervalId = clock(timing)
+}
+
+const menu = () =>{
+    const menuWindow = document.querySelector('.mainMenu') 
+    menuWindow.style.display='flex'
+    document.querySelector('#startGame').addEventListener('click',()=>{
+        launch()
+        menuWindow.style.display='none'
+    })
+}
+
+menu()

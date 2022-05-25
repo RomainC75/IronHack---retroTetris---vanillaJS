@@ -64,6 +64,7 @@ body{
 .bigContainer{
     margin:0 auto;
     display:flex;
+    position:relative;
 }
 
 .tetrisBoard{
@@ -176,7 +177,62 @@ body{
         background:grey;
         border:1px solid black;
         border-radius:10%;box-shadow: inset -5px -5px rgba(3, 3, 3, 0.22) !important;
+    }
+}
 
+.clignotant{
+    animation: clignoAnim 0.4s infinite !important;
+}
+
+.menu{
+    position:absolute;
+    top:40px;
+    left:330px;
+    background:rgb(158, 157, 157);
+    width:400px;
+    z-index:5;
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    border:1px solid white;
+    & h2{
+        margin-bottom:50px;
+        margin-top:50px;
+        text-align: center;
+    }
+    & button{
+        margin:30px auto;
+        padding:10px 15px;
+    }
+}
+
+.finalScore{
+    & ul{
+        padding:0;
+        margin:10px;
+    }
+    & li {
+        display:flex;
+        justify-content: space-between;
+        
+        & > div{
+            display:inline-block;
+        }
+    }
+    
+}
+
+.mainMenu{
+    
+}
+
+@keyframes clignoAnim{
+    0%{
+        transform:scale(1) rotate(0)
+    }
+    100%{
+        transform:scale(1.4) rotate(180deg);
     }
 }
 

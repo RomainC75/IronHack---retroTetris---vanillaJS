@@ -103,7 +103,7 @@ class Matrix{
         //console.log(tetro.positionIndex,tetro.positions)
         let isProblem = false
         //console.log(tetro)
-        const result = this.matrix.map( (line, y, arrayM)=>{
+        const result = this.matrix.map( (line, y, arrayM)=> {
             return line.map( (unit, x, array)=>{
                 if(x>=tetro.x && y>=tetro.y && x<tetro.x+tetro.totalWidth && y<tetro.y+tetro.totalWidth){
                     //console.log(y,x,'---',unit,'----',tetro.positions[tetro.positionIndex][y-tetro.y][x-tetro.x])
@@ -153,10 +153,16 @@ class Matrix{
         return this.queue[0].distanceToTheLeft()
     }
     makeFullLinesColored(){
+        let madeFullLinesColored = false
         this.matrix = this.matrix.map(line=>{
-            return line.every(unit=>unit>0) ? [7,7,7,7,7,7,7,7,7,7] : line
+            if(line.every(unit=>unit>0)){
+                madeFullLinesColored = true
+                return [7,7,7,7,7,7,7,7,7,7]
+            }else{
+                return line
+            }
         })
-
+        return madeFullLinesColored
     }
     eraseFullLines(){
         const filtered = this.matrix.filter(line=>!line.every(unit=>unit>0))
