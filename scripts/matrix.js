@@ -30,7 +30,7 @@ class Matrix{
         this.newLine=[0,0,0,0,0,0,0,0,0,0]   
         this.queue=[]
         this.linesErasedNumber=0
-        this.timing=[600,500,450,400,370,340,310,290,280,250,230]
+        this.timing=[600,500,450,400,350,300,270,230,200,170,150]
         this.levelsAndLines = [0,2,4,6,8,10,12,14,16,18,20]
     }
     get Matrix() {
@@ -42,7 +42,9 @@ class Matrix{
         }
     }
     increaseLevelIfPossible(){
+        console.log('linesErased : ',this.linesErasedNumber)
         const correspondingLevel = this.levelsAndLines.findIndex(val=>this.linesErasedNumber < val)
+        console.log('increaseIfPossible')
         console.log(this.levelsAndLines, this.linesErasedNumber)
         console.log("correspondingLevel",correspondingLevel)
         this.level = correspondingLevel==-1 ? 10 : correspondingLevel-1
@@ -103,7 +105,7 @@ class Matrix{
     }
     goDown(){   
         if( this.queue[0].y+this.queue[0].distanceToTheBottom() < 19 ){
-            console.log('--->',this.queue[0].y+this.queue[0].distanceToTheBottom())
+            //console.log('--->',this.queue[0].y+this.queue[0].distanceToTheBottom())
             this.queue[0].goDownTetromino()
         }
     }

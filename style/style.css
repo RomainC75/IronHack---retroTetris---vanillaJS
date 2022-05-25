@@ -277,6 +277,14 @@ body {
   display: inline-block;
 }
 
+.soundContainer {
+  width: 80px;
+}
+
+.soundContainer .sound.on {
+  display: none;
+}
+
 @-webkit-keyframes clignoAnim {
   0% {
     -webkit-transform: scale(1) rotate(0);
