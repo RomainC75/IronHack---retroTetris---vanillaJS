@@ -80,6 +80,8 @@ body {
   -ms-grid-columns: (10%)[10];
       grid-template: repeat(20, 5%)/repeat(10, 10%);
   background: url("https://images.unsplash.com/photo-1465101162946-4377e57745c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1957&q=80") center;
+  -webkit-animation: gradient 400s ease infinite;
+          animation: gradient 400s ease infinite;
 }
 
 .queue {

@@ -1,3 +1,6 @@
+const tetrisMusic = new Audio('../music/music.mp3')
+
+
 const tetrisBoard = document.querySelector('section.tetrisBoard')
 for( let i = 0  ; i<200 ; i++ ){
     const divEl = document.createElement('div')
@@ -263,7 +266,7 @@ const launch = () =>{
     printPieceN(1,nextPiece)
     printPieceN(2,secondNextPiece)
     render()
-
+    tetrisMusic.play()
     
     
     intervalId = clock(timing)

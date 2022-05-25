@@ -101,8 +101,7 @@ class Matrix{
     canGoDown(){
         return this.queue[0].y+this.queue[0].distanceToTheBottom() < 19 ? true : false
     }
-    goDown(){
-        
+    goDown(){   
         if( this.queue[0].y+this.queue[0].distanceToTheBottom() < 19 ){
             console.log('--->',this.queue[0].y+this.queue[0].distanceToTheBottom())
             this.queue[0].goDownTetromino()
@@ -153,7 +152,6 @@ class Matrix{
         }else if(direction==4){
             copyTetro.x--
         }
-        //////////////////////////////////////////////////////////
         if(this.getResult(copyTetro)!==false && this.canGoDown()){
             return false
         }
@@ -196,14 +194,15 @@ class Matrix{
         return filteredLineNumber
     }
     increasePoints(lineNumber){
+        const multiplicator = this.level == 0 ? 1 : this.level
         if(lineNumber===1){
-            this.score+=100
+            this.score+=100*multiplicator
         }else if(lineNumber===2){
-            this.score+=300
+            this.score+=300*multiplicator
         }else if(lineNumber===3){
-            this.score+=500
+            this.score+=500*multiplicator
         }else if(lineNumber===4){
-            this.score+=800
+            this.score+=800*multiplicator
         }
     }
 }
