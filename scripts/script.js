@@ -53,24 +53,32 @@ document.addEventListener('keydown', (event)=>{
     }
 })
 
+//sounds
 const soundContainer = document.querySelector('.soundContainer')
 const soundOn = document.querySelector('.sound.on')
 const soundOff = document.querySelector('.sound.off')
 let onOff=true
+let musicRate = 1
+
 
 soundContainer.addEventListener('click',()=>{
+    console.log('previous state', onOff)
+    onOff=!onOff
     if(onOff){
        soundOff.style.display="block"
        soundOn.style.display="none"
        tetrisMusic.load()
        tetrisMusic.play()
+       tetrisMusic.playbackRate = matrix.level <=1 ? 1 : 1 + 0.06*matrix.level
     }else{
         soundOff.style.display="none"
        soundOn.style.display="block" 
        tetrisMusic.pause()
     }
-    onOff=!onOff
+    
+    console.log('current state', onOff)
 })
+
 
 
 const printPieceN = (index, element) => {
@@ -187,7 +195,7 @@ const clock = (timer) =>{
         //console.log('BEGINING', matrix.matrix)
         //if(true){
         if(matrix.queue[0].y==-3 &&  previous===-2){ 
-            tetrisMusic.sto   
+            tetrisMusic.pause()
             console.log('---> FINISHHHHHHHHHH')
             console.log('---> FINISHHHHHHHHHH')
             console.log('---> FINISHHHHHHHHHH')
@@ -229,15 +237,8 @@ const clock = (timer) =>{
                         tetrisMusic.playbackRate = matrix.level <=1 ? 1 : 1 + 0.06*matrix.level                 
                     }
                 },400)
-                
-                
-
-                
-                
                 console.log('corresponding timing : ' , matrix.getTimingRelatedToThisLevel())
                 console.log('++++++++++linesErasedNumber',matrix.linesErasedNumber)
-                
-                
                 intervalId=clock(matrix.getTimingRelatedToThisLevel())
             }
         }       
@@ -267,7 +268,7 @@ const launch = () =>{
     tetrisMusic.play()
     tetrisMusic.loop=true
     
-    
+    timing=600
     intervalId = clock(timing)
 }
 
