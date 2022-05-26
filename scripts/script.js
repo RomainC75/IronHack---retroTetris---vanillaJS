@@ -25,7 +25,7 @@ const printScore = (score) =>{
     }
 }
 
-
+const wholeTetrisBoard = document.querySelector('.boards')
 
 //walls construction
 const wallsGrid = document.querySelector('.tetrisWalls')
@@ -59,9 +59,7 @@ const soundOff = document.querySelector('.sound.off')
 let onOff=true
 let musicRate = 1
 
-
 soundContainer.addEventListener('click',()=>{
-    console.log('previous state', onOff)
     onOff=!onOff
     if(onOff){
        soundOff.style.display="block"
@@ -74,11 +72,7 @@ soundContainer.addEventListener('click',()=>{
        soundOn.style.display="block" 
        tetrisMusic.pause()
     }
-    
-    console.log('current state', onOff)
 })
-
-
 
 const printPieceN = (index, element) => {
     const pieceToPrint=matrix.getPieceOfIndexNInQueue(index)
@@ -101,7 +95,7 @@ const printPieceN = (index, element) => {
 }
 
 const animateScore = (number) => {
-    scorePs[0].classList.remove('animOneLine','animTwoLines','animThreeLines','animTetrisLines')
+    scorePs[0].classList.remove('animOneLine','animTwoLines','animThreeLines','animTetrisLines', 'shakeIt')
     if(number===1){
         scorePs[0].classList.add('animOneLine')
     }else if(number===2){
@@ -109,6 +103,7 @@ const animateScore = (number) => {
     }else if(number===3){
         scorePs[0].classList.add('animThreeLines')
     }else if(number===4){
+        wholeTetrisBoard.classList.add('shakeIt')
         scorePs[0].classList.add('animTetrisLines')
     }
 }
@@ -179,8 +174,6 @@ const render = ()=>{
             div.classList.add('clignotant')
         }
     });
-    console.log('rendering matrix', matrix)
-    console.log('tetro[0] y : ',matrix.queue[0].y)
     document.querySelector('.levelP').textContent=matrix.level
     document.querySelector('.linesNumberP').textContent=matrix.linesErasedNumber
     //next pieces
@@ -195,11 +188,7 @@ const clock = (timer) =>{
     return setInterval( ()=>{
         console.log('---------------------------------------------')
         console.log('---------------------------------------------')
-        console.log('timing : ', timing)
-        //console.log('BEGINING', matrix.matrix)
-        //if(true){
         if(matrix.queue[0].y==-3 &&  previous===-2){ 
-            // tetrisMusic.pause()
             console.log('---> FINISHHHHHHHHHH')
             console.log('---> FINISHHHHHHHHHH')
             clearInterval(intervalId)
@@ -222,31 +211,22 @@ const clock = (timer) =>{
             if(madeFullLinesColored){
                 clearInterval(intervalId)
                 setTimeout(()=>{
-                    //render()
                     const erasedLinesNumber = matrix.eraseFullLines()
-                    //console.log('-------> erased lines number: ',erasedLinesNumber)
                     animateScore(erasedLinesNumber)
                     render()
-
                     const oldLevel = matrix.level
                     matrix.increaseLevelIfPossible()
                     if(oldLevel!=matrix.level){
-                        console.log('-------> coin sound')
                         tetrisMusic.playbackRate = matrix.level <=1 ? 1 : 1 + 0.06*matrix.level                 
                     }
                 },400)
-                console.log('corresponding timing : ' , matrix.getTimingRelatedToThisLevel())
-                console.log('++++++++++linesErasedNumber',matrix.linesErasedNumber)
                 intervalId=clock(matrix.getTimingRelatedToThisLevel())
             }
-        }       
+        }
     },timer)
 }
 
-
 // INITIALISATION
-
-
 let matrix = null
 let intervalId = null
 let previous = false

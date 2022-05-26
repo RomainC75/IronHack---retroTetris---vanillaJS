@@ -4,7 +4,8 @@ x menu
 
 x restart
 
-x leader Board in sessionsStorage
+x leader Board in 
+x sessionsStorage
       script 142
       matrix 5
 
@@ -13,9 +14,9 @@ x leader Board in sessionsStorage
 bugs : 
   x points animations 
   x line to erase
-  xtetro colors
-  -->slide on the floor
+  x tetro colors
   x? acceleration
+  x !!!!slide on the floor
 
-
-
+styling :
+  -->flex

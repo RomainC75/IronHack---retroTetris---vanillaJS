@@ -461,4 +461,130 @@ body {
     background-position: 0% 50%;
   }
 }
+
+.shakeIt {
+  -webkit-animation: shake 0.82s ease-in-out both;
+          animation: shake 0.82s ease-in-out both;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+@-webkit-keyframes shake {
+  10%, 90% {
+    -webkit-transform: translateX(-1px);
+            transform: translateX(-1px);
+  }
+  20%, 80% {
+    -webkit-transform: translateX(2px);
+            transform: translateX(2px);
+  }
+  30%, 50%, 70% {
+    -webkit-transform: translateX(-4px);
+            transform: translateX(-4px);
+  }
+  40%, 60% {
+    -webkit-transform: translateX(4px);
+            transform: translateX(4px);
+  }
+}
+
+@keyframes shake {
+  10%, 90% {
+    -webkit-transform: translateX(-1px);
+            transform: translateX(-1px);
+  }
+  20%, 80% {
+    -webkit-transform: translateX(2px);
+            transform: translateX(2px);
+  }
+  30%, 50%, 70% {
+    -webkit-transform: translateX(-4px);
+            transform: translateX(-4px);
+  }
+  40%, 60% {
+    -webkit-transform: translateX(4px);
+            transform: translateX(4px);
+  }
+}
+
+@media (max-width: 1060px) {
+  .background {
+    padding: 20px;
+    margin: 10px;
+  }
+  .bigContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    max-height: 700px;
+    width: 700px;
+    -ms-flex-line-pack: distribute;
+        align-content: space-around;
+  }
+  .boards {
+    -webkit-box-ordinal-group: 5;
+        -ms-flex-order: 4;
+            order: 4;
+  }
+  .points {
+    margin: 0px;
+  }
+  .points > p, .points > span {
+    font-size: 20px;
+  }
+  .queue {
+    margin: 0;
+  }
+  #nextPiece, #secondNextPiece {
+    margin-top: 5px;
+  }
+  .soundContainer {
+    width: 60px;
+  }
+  .menu {
+    left: 160px;
+  }
+}
+
+@media (max-width: 715px) {
+  .background {
+    margin: 10px;
+  }
+  h1 {
+    font-size: 35px;
+    letter-spacing: 1.3em;
+  }
+  .bigContainer {
+    width: 600px;
+  }
+  .menu {
+    left: 120px;
+  }
+}
+
+@media (max-width: 630px) {
+  .bigContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .boards {
+    -webkit-box-ordinal-group: 0;
+        -ms-flex-order: -1;
+            order: -1;
+  }
+  .points, .queue {
+    width: 160px;
+  }
+  .points p {
+    font-weight: 20px;
+  }
+}
 /*# sourceMappingURL=style.css.map */
