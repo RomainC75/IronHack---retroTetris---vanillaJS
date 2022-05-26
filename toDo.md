@@ -15,6 +15,7 @@ bugs :
   x line to erase
   xtetro colors
   -->slide on the floor
+  x? acceleration
 
 
 

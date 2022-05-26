@@ -57,7 +57,11 @@ class Matrix{
         const elements = [new RectoL(), new VersoL(), new Square(), new Barre(), new SCurve(), new ZCurve(), new TBlock()]
         this.queue.push(elements
             .sort((a,b)=> 0.5 - Math.random())[0])
-        
+    }
+    initializeQueue(){
+        for(let i=0 ; i<3 ; i++){
+            this.addToTheQueue()
+        }
     }
     getPieceOfIndexNInQueue(index){
         return this.queue[index].positions[0]

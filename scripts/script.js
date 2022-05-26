@@ -1,5 +1,4 @@
 const tetrisMusic = new Audio('../music/music.mp3')
-const coinSound = new Audio('../music/coinSound.mp3')
 
 const tetrisBoard = document.querySelector('section.tetrisBoard')
 for( let i = 0  ; i<200 ; i++ ){
@@ -149,13 +148,15 @@ const displayFinalScore = () =>{
         })
         document.querySelector('#enterNewScore').addEventListener('click',()=>{
             const inputVal = document.querySelector('#newScore').value
+            ulLeaderBoard.innerHTML=""
             enterNewScoreInLocalStorage(inputVal, matrix.score)
-            wholeLeaderBoard.style.display="none";
+            wholeLeaderBoard.style.display="none"
             //reset
             menu()
             matrix=new Matrix()
             render()
         })
+        
     }else{
         const looserMenu = document.querySelector('.looserMenu')
         looserMenu.style.display='flex'
@@ -178,6 +179,8 @@ const render = ()=>{
             div.classList.add('clignotant')
         }
     });
+    console.log('rendering matrix', matrix)
+    console.log('tetro[0] y : ',matrix.queue[0].y)
     document.querySelector('.levelP').textContent=matrix.level
     document.querySelector('.linesNumberP').textContent=matrix.linesErasedNumber
     //next pieces
@@ -190,14 +193,13 @@ const render = ()=>{
 
 const clock = (timer) =>{
     return setInterval( ()=>{
-        //console.log('---------------------------------------------')
-        //console.log('---------------------------------------------')
+        console.log('---------------------------------------------')
+        console.log('---------------------------------------------')
+        console.log('timing : ', timing)
         //console.log('BEGINING', matrix.matrix)
         //if(true){
         if(matrix.queue[0].y==-3 &&  previous===-2){ 
-            tetrisMusic.pause()
-            console.log('---> FINISHHHHHHHHHH')
-            console.log('---> FINISHHHHHHHHHH')
+            // tetrisMusic.pause()
             console.log('---> FINISHHHHHHHHHH')
             console.log('---> FINISHHHHHHHHHH')
             clearInterval(intervalId)
@@ -206,7 +208,6 @@ const clock = (timer) =>{
         }
         previous = matrix.queue[0].y
          //test if the block can go down
-        
         if(!matrix.isNextMoveInContactWithBlocksOrBottom(3)){
             matrix.goDown()
             render()
@@ -216,10 +217,7 @@ const clock = (timer) =>{
             matrix.addToTheQueue()
             matrix.removeFromQueue()
             //special color
-            //console.log('--->before colorization',matrix.matrix)
             const madeFullLinesColored = matrix.makeFullLinesColored()
-            //console.log('madeFullLinesColored',madeFullLinesColored)
-            //console.log('-->after colorization : ', matrix.matrix)
             render()
             if(madeFullLinesColored){
                 clearInterval(intervalId)
@@ -255,19 +253,18 @@ let previous = false
 let timing = false
 
 const launch = () =>{
+    clearInterval(intervalId)
+    matrix=null
     matrix = new Matrix()
     timing = matrix.getTimingRelatedToThisLevel()
-    let previous=0
-    for(let i=0 ; i<3 ; i++){
-        matrix.addToTheQueue()
-    }
+    matrix.initializeQueue()
     printPieceN(1,nextPiece)
     printPieceN(2,secondNextPiece)
     render()
     tetrisMusic.load()
     tetrisMusic.play()
     tetrisMusic.loop=true
-    
+
     timing=600
     intervalId = clock(timing)
 }

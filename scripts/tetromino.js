@@ -14,6 +14,7 @@ class Tetromino{
     }
     goDownTetromino(){
         this.y++
+        console.log('y : ', this.y)
     }
     distanceToTheRight(index){
         //console.log('index',index)
