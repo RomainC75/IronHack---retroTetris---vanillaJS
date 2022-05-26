@@ -393,6 +393,9 @@ body{
     }
     .boards{
         order:-1;
+        & section{
+            transform:scale(0.90);
+        }
     }
     .points, .queue{
         width:160px;
@@ -404,7 +407,7 @@ body{
 
     }
     .queue{
-        
+        height:250px;
     }
 
 }

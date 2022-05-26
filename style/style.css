@@ -580,11 +580,18 @@ body {
         -ms-flex-order: -1;
             order: -1;
   }
+  .boards section {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
   .points, .queue {
     width: 160px;
   }
   .points p {
     font-weight: 20px;
+  }
+  .queue {
+    height: 250px;
   }
 }
 /*# sourceMappingURL=style.css.map */
