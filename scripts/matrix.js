@@ -47,10 +47,10 @@ class Matrix{
         return this.timing[this.level]
     }
     addToTheQueue(){
-        // const elements = [new RectoL(), new VersoL(), new Square(), new Barre(), new SCurve(), new ZCurve(), new TBlock()]
-        // this.queue.push(elements[Math.floor(Math.random()*7)])
-        const elements = [new Barre()]
-        this.queue.push(elements[0])
+        const elements = [new RectoL(), new VersoL(), new Square(), new Barre(), new SCurve(), new ZCurve(), new TBlock()]
+        this.queue.push(elements[Math.floor(Math.random()*7)])
+        // this.queue.push(elements[0])
+        // const elements = [new Barre()]
     }
     initializeQueue(){
         for(let i=0 ; i<3 ; i++){
@@ -196,3 +196,4 @@ class Matrix{
         }
     }
 }
+

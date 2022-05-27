@@ -163,7 +163,6 @@ const displayFinalScore = () =>{
 }
 
 const render = ()=>{
-    //game
     matrix.getResult().flat().forEach((el,i) => {
         const div=document.querySelector(`.tetrisBoard div:nth-child(${i+1})`)
         div.removeAttribute( 'class' )
