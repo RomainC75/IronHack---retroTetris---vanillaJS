@@ -1,26 +1,5 @@
-TETRIs 
-
-project for Ironhack
-
-features
-
-responsive
-
-
-issues
-
-Demo with link
-
-
-
-
-goto Hackmd.io
-
-
-
-
--------------------------
 Presentation
+
 from 2PM
 
 

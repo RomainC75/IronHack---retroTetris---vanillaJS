@@ -1,4 +1,4 @@
-const tetrisMusic = new Audio('../music/music.mp3')
+const tetrisMusic = new Audio('music/music.mp3')
 
 const tetrisBoard = document.querySelector('section.tetrisBoard')
 for( let i = 0  ; i<200 ; i++ ){
