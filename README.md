@@ -9,6 +9,7 @@ This Tetris game is fully inspired by the classic Tetris game developped by Alek
 
 ### Gameplay
 
+<img src="assets/tetrisScreenShoot.png" alt="gameplay" style="max-width:100%;">
 
 project for Ironhack
 
