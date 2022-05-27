@@ -1,4 +1,4 @@
-# Tetris
+# Tetris - project for Ironhack
 
 [https://romainc75.github.io/IronHack---retroTetris---vanillaJS/]
 
@@ -11,14 +11,25 @@ This Tetris game is fully inspired by the classic Tetris game developped by Alek
 
 <img src="assets/tetrisScreenShoot.png" alt="gameplay" style="max-width:100%;">
 
-project for Ironhack
+### Features
 
-features
+The game contains the main features of the Tetris and some others due to the CSS/JS stack:
+- removing completed lines with an animation,
+- the more the level increases the more the music speeds up
+- the more the level increases the more the game speeds up
+- music on/off switch,
+- score increases depending on : 
+  - the number of lines getting erased at the same time
+  - the level reached at that time
+- being able to slide the moving tetromino on the bottom end and the other tetrominos between 2 clocks
+- responsive
+- animation on the score number when lines are erased :
+  -1 line : green,
+  -2 lines : blue,
+  -3 lines : orange,
+  -4 lines : red,
+- the 2 next pieces are displayed next to the tetris board
+- the whole tetris board vibrates when the player make a "tetris" (4 lines at the same time)
 
-responsive
 
-
-issues
-
-Demo with link
 
