@@ -24,12 +24,14 @@ The game contains the main features of the Tetris and some others due to the CSS
 - being able to slide the moving tetromino on the bottom end and the other tetrominos between 2 clocks
 - responsive
 - animation on the score number when lines are erased :
-  -1 line : green,
-  -2 lines : blue,
-  -3 lines : orange,
-  -4 lines : red,
+  - 1 line : green,
+  - 2 lines : blue,
+  - 3 lines : orange,
+  - 4 lines : red,
 - the 2 next pieces are displayed next to the tetris board
 - the whole tetris board vibrates when the player make a "tetris" (4 lines at the same time)
-
+- menu/restart
+- leaderBoard
+- 
 
 
