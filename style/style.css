@@ -1,7 +1,7 @@
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
 }
 
 h1 {
@@ -35,11 +35,11 @@ body {
 }
 
 .darkBlue {
-  background-color: #0000F0;
+  background-color: #0000f0;
 }
 
 .orange {
-  background-color: #F0A000;
+  background-color: #f0a000;
 }
 
 .yellow {
@@ -47,15 +47,15 @@ body {
 }
 
 .green {
-  background-color: #00F000;
+  background-color: #00f000;
 }
 
 .purple {
-  background-color: #A000F0;
+  background-color: #a000f0;
 }
 
 .red {
-  background-color: #F00000;
+  background-color: #f00000;
 }
 
 .black {
@@ -98,7 +98,8 @@ body {
   margin-top: 40px;
 }
 
-#nextPiece, #secondNextPiece {
+#nextPiece,
+#secondNextPiece {
   display: -ms-grid;
   display: grid;
   width: 100px;
@@ -108,11 +109,13 @@ body {
       grid-template: repeat(4, 20%)/repeat(4, 20%);
 }
 
-#nextPiece div, #secondNextPiece div {
+#nextPiece div,
+#secondNextPiece div {
   border: 1px solid #e2e2e2;
 }
 
-#nextPiece div:not(.undefined), #secondNextPiece div:not(.undefined) {
+#nextPiece div:not(.undefined),
+#secondNextPiece div:not(.undefined) {
   border: 1px solid rgba(78, 78, 78, 0.4);
   border-radius: 10%;
   -webkit-box-shadow: inset -4px -4px rgba(83, 83, 83, 0.4);
@@ -470,38 +473,48 @@ body {
 }
 
 @-webkit-keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     -webkit-transform: translateX(-1px);
             transform: translateX(-1px);
   }
-  20%, 80% {
+  20%,
+  80% {
     -webkit-transform: translateX(2px);
             transform: translateX(2px);
   }
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     -webkit-transform: translateX(-4px);
             transform: translateX(-4px);
   }
-  40%, 60% {
+  40%,
+  60% {
     -webkit-transform: translateX(4px);
             transform: translateX(4px);
   }
 }
 
 @keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     -webkit-transform: translateX(-1px);
             transform: translateX(-1px);
   }
-  20%, 80% {
+  20%,
+  80% {
     -webkit-transform: translateX(2px);
             transform: translateX(2px);
   }
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     -webkit-transform: translateX(-4px);
             transform: translateX(-4px);
   }
-  40%, 60% {
+  40%,
+  60% {
     -webkit-transform: translateX(4px);
             transform: translateX(4px);
   }
@@ -532,13 +545,15 @@ body {
   .points {
     margin: 0px;
   }
-  .points > p, .points > span {
+  .points > p,
+  .points > span {
     font-size: 20px;
   }
   .queue {
     margin: 0;
   }
-  #nextPiece, #secondNextPiece {
+  #nextPiece,
+  #secondNextPiece {
     margin-top: 5px;
   }
   .soundContainer {
@@ -584,7 +599,8 @@ body {
     -webkit-transform: scale(0.9);
             transform: scale(0.9);
   }
-  .points, .queue {
+  .points,
+  .queue {
     width: 160px;
   }
   .points p {

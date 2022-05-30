@@ -9,7 +9,9 @@
   "dependencies": {
     "jest": "^28.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "2.6.2"
+  },
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll --verbose=false"
