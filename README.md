@@ -1,6 +1,6 @@
 # Tetris - project for Ironhack
 
-[https://romainc75.github.io/IronHack---retroTetris---vanillaJS/]
+[https://romainc75.github.io/IronHack-retroTetris-JS/]
 
 
 ### About
