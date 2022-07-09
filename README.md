@@ -3,7 +3,7 @@
 play with the arrow keys here
 
 
-[here !]([https://link-url-here.org](https://romainc75.github.io/IronHack-retroTetris-JS/))
+[here !]([https://romainc75.github.io/IronHack-retroTetris-JS/])
 
 
 ### About
