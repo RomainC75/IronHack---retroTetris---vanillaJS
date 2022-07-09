@@ -1,10 +1,10 @@
 # Tetris - project for Ironhack
 
-play with the arrow keys here
+play with the arrow keys [here !](https://romainc75.github.io/IronHack-retroTetris-JS/)
 
-
-[here !](https://romainc75.github.io/IronHack-retroTetris-JS/)
-
+move : ← and →
+turn : ↑
+drop : ↓
 
 ### About
 
