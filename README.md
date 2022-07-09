@@ -2,9 +2,9 @@
 
 play with the arrow keys [here !](https://romainc75.github.io/IronHack-retroTetris-JS/)
 
-move : ← and →
-turn : ↑
-drop : ↓
+move : ← and →\
+turn : ↑\
+drop : ↓\
 
 ### About
 
