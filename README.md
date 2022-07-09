@@ -1,6 +1,9 @@
 # Tetris - project for Ironhack
 
-[https://romainc75.github.io/IronHack-retroTetris-JS/]
+play with the arrow keys here
+
+
+[here !]([https://link-url-here.org](https://romainc75.github.io/IronHack-retroTetris-JS/))
 
 
 ### About
